@@ -26,8 +26,8 @@ def get_digit_count(x):
 def get_uppercaset_count(x):
     return utils._get_uppercaset_count(x)
 
-def get_cont_extraction(x):
-    return utils._get_cont_extraction(x)
+def cont_extraction(x):
+    return utils._cont_extraction(x)
 
 def get_emails(x):
     return utils._get_emails(x)
@@ -59,11 +59,14 @@ def remove_stopwords(x):
 def make_base(x):
     return utils._make_base(x)
 
-def remove_commonwords(x, no=20):
-    return utils._remove_commonwords(x, no=20)
+def get_value_count(df,col):
+    return utils._get_value_count(df,col)
 
-def remove_rarewords(x, no = 20):
-    return utils._remove_rarewords(x, no=20)
+def remove_commonwords(x, freq, no=20):
+    return utils._remove_commonwords(x, no)
+
+def remove_rarewords(x, freq, no = 20):
+    return utils._remove_rarewords(x, no)
 
 def spelling_correction(x):
     return utils._spelling_correction(x)

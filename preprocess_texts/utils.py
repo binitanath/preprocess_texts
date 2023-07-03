@@ -11,6 +11,7 @@ import unicodedata
 
 
 nlp = spacy.load("en_core_web_sm")
+
 def _get_wordcounts(x):
     wordlength = len(str(x).split())
     return wordlength + len(str(x))
@@ -42,7 +43,7 @@ def _get_digit_count(x):
 def _get_uppercaset_count(x):
     return  len([t for t in x.split() if t.isupper()])
 
-def _get_cont_extraction(x):
+def _cont_extraction(x):
     contractions = {
         "ain't":"am not",
         "aren't":"are not",
@@ -191,19 +192,20 @@ def _make_base(x):
         x_list.append(lemma)
     return ' '.join(x_list)     
 
-def _remove_commonwords(x, no=20):
-    text = x.split()
-    freq_comm = pd.Series(text).value_counts()
-    fno = freq_comm[:no]  
+def _get_value_counts(df,col):
+    text = ' '.join(df[col])
+    text = text.split()
+    freq = pd.Series(text).value_counts()
+    return freq
 
+
+def _remove_commonwords(x, freq, no=20):
+    fno = freq[:no]  
     x = ' '.join([t for t in x.split() if t not in fno ])
     return x
 
-def _remove_rarewords(x, no = 20):
-    text = x.split()
-    freq_comm = pd.Series(text).value_counts()
-    fno = freq_comm.tail(no)
-
+def _remove_rarewords(x, freq, no = 20):
+    fno = freq.tail(no)
     x = ' '.join([t for t in x.split() if t not in fno ])
     return x
 

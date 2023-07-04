@@ -8,6 +8,9 @@ from spacy.lang.en.stop_words import STOP_WORDS as stopwords
 from bs4 import BeautifulSoup
 from textblob import TextBlob
 import unicodedata
+import spacy.cli
+
+spacy.cli.download("en_core_web_sm")
 
 nlp = spacy.load("en_core_web_sm")
 #nlp = en_core_web_sm.load()
